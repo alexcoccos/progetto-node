@@ -1,8 +1,15 @@
 var express = require('express');
 var app = express();
 var path = require('path');
+var bodyParser = require('body-parser');
 
 const PORT = 3000;
+
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
+app.use(bodyParser.json());
+app.use(bodyParser.text());
 
 //servo la index.html
 app.get('/',function(req,res){
