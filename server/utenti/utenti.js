@@ -126,7 +126,25 @@ router.post('/',function(req,res){
   {
     console.log(err);
   });
-})
+});
+
+//modifica utente
+router.put("/id/:id",function(req,res){
+  var id = req.params.id;
+  var aggiornato = req.body;
+  for(var i=0; i<users.length; i++)
+  {
+    if(users[i].id == id)
+    {
+      users[i]= aggiornato;
+    }
+  }
+
+  jsonfile.writeFile(path.join(__dirname, "Db.json"), users, function (err)
+  {
+    console.log(err);
+  });
+});
 
 //questo deve stare sempre alla fine perchè esporta il modulo all'esterno
 module.exports= router;
